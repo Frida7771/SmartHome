@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" 
+      fx:controller="edu.neu.csye7374.core.MVC.DeviceController"
+      spacing="15" style="-fx-padding: 15; -fx-background-color: #f8f9fa;">
+    
+    <!-- Header -->
+    <HBox style="-fx-background-color: #2c3e50; -fx-padding: 20; -fx-background-radius: 8;" alignment="CENTER">
+        <Label text="Smart Home Control Center" 
+               style="-fx-text-fill: white; -fx-font-size: 24px; -fx-font-weight: bold;"/>
+    </HBox>
+    
+    <!-- Main Content -->
+    <HBox spacing="20" VBox.vgrow="ALWAYS">
+        
+        <!-- Left Panel - Device Management & Activity Log (60%) -->
+        <VBox spacing="15" HBox.hgrow="ALWAYS" minWidth="400" prefWidth="600">
+            
+            <!-- Device Management -->
+            <VBox style="-fx-background-color: white; -fx-padding: 20; -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);" 
+                  VBox.vgrow="ALWAYS">
+                
+                <!-- Device Management Header -->
+                <HBox alignment="CENTER_LEFT" spacing="15" style="-fx-padding: 0 0 20 0;">
+                    <Label text="My Smart Devices" style="-fx-font-weight: bold; -fx-font-size: 20px; -fx-text-fill: #2c3e50;"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Button text="+ Add Light" onAction="#handleAddLight" 
+                            style="-fx-background-color: #ffd700; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 8 16; -fx-background-radius: 6;"/>
+                    <Button text="+ Add Thermostat" onAction="#handleAddThermostat" 
+                            style="-fx-background-color: #ff6b35; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 8 16; -fx-background-radius: 6;"/>
+                </HBox>
+                
+                <!-- Device List (Main Content) -->
+                <ScrollPane VBox.vgrow="ALWAYS" fitToWidth="true" 
+                            style="-fx-background: transparent; -fx-background-color: transparent; -fx-border-width: 0;">
+                    <VBox fx:id="deviceListContainer" spacing="12" style="-fx-padding: 5;"/>
+                </ScrollPane>
+                
+            </VBox>
+            
+            <!-- Activity Log -->
+            <VBox style="-fx-background-color: white; -fx-padding: 20; -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);" 
+                  minHeight="200" maxHeight="300">
+                <Label text="Activity Log" style="-fx-font-weight: bold; -fx-font-size: 18px; -fx-text-fill: #2c3e50; -fx-padding: 0 0 15 0;"/>
+                <TextArea fx:id="systemLogArea" editable="false" VBox.vgrow="ALWAYS" 
+                          style="-fx-font-family: 'Consolas', 'Monaco', monospace; -fx-font-size: 12px; -fx-background-color: #f8f9fa; -fx-border-color: #e9ecef; -fx-border-radius: 4; -fx-background-radius: 4;"/>
+            </VBox>
+            
+        </VBox>
+        
+        <!-- Right Panel - Controls & Management (40%) -->
+        <VBox spacing="15" minWidth="400" prefWidth="400" maxWidth="450">
+            
+            <!-- Automation Section -->
+            <VBox style="-fx-background-color: white; -fx-padding: 15; -fx-background-radius: 8; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 8, 0, 0, 1);">
+                <Label text="Automation" style="-fx-font-weight: bold; -fx-font-size: 16px; -fx-text-fill: #2c3e50; -fx-padding: 0 0 10 0;"/>
+                <VBox fx:id="automationRuleContainer" spacing="8"/>
+            </VBox>
+            
+            <!-- Scenes & Groups Section -->
+            <VBox style="-fx-background-color: white; -fx-padding: 15; -fx-background-radius: 8; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 8, 0, 0, 1);">
+                <Label text="Scenes &amp; Groups" style="-fx-font-weight: bold; -fx-font-size: 16px; -fx-text-fill: #2c3e50; -fx-padding: 0 0 10 0;"/>
+                
+                <!-- Groups Management -->
+                <VBox spacing="8" style="-fx-padding: 0 0 15 0;">
+                    <HBox spacing="8" alignment="CENTER_LEFT">
+                        <Label text="Groups:" style="-fx-font-weight: bold; -fx-font-size: 14px;"/>
+                        <Button text="Create Group" onAction="#handleCreateGroup" 
+                                style="-fx-background-color: #28a745; -fx-text-fill: white; -fx-font-size: 11px; -fx-padding: 6 12; -fx-background-radius: 4;"/>
+                    </HBox>
+                    <VBox spacing="4">
+                        <Label text="Available Groups:" style="-fx-font-size: 12px; -fx-text-fill: #6c757d;"/>
+                        <ListView fx:id="groupListView" prefHeight="100" style="-fx-font-size: 12px; -fx-background-radius: 4; -fx-border-radius: 4;"/>
+                    </VBox>
+                </VBox>
+                
+                <!-- Scene Controls -->
+                <VBox spacing="8">
+                    <HBox spacing="8" alignment="CENTER_LEFT">
+                        <Label text="Apply Scene to:" style="-fx-font-size: 12px;"/>
+                        <ComboBox fx:id="sceneGroupSelector" promptText="Select Group" style="-fx-font-size: 11px;"/>
+                    </HBox>
+                    <VBox fx:id="sceneContainer" spacing="6"/>
+                </VBox>
+            </VBox>
+            
+            <!-- System Controls -->
+            <VBox style="-fx-background-color: white; -fx-padding: 15; -fx-background-radius: 8; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 8, 0, 0, 1);">
+                <Label text="System Controls" style="-fx-font-weight: bold; -fx-font-size: 16px; -fx-text-fill: #2c3e50; -fx-padding: 0 0 10 0;"/>
+                
+                <!-- Undo/Redo -->
+                <VBox spacing="6" style="-fx-padding: 0 0 10 0;">
+                    <HBox spacing="6">
+                        <Button text="Undo" onAction="#handleUndo" 
+                                style="-fx-background-color: #ffc107; -fx-text-fill: white; -fx-font-size: 12px; -fx-padding: 8 16; -fx-background-radius: 4;" HBox.hgrow="ALWAYS"/>
+                        <Button text="Redo" onAction="#handleRedo" 
+                                style="-fx-background-color: #17a2b8; -fx-text-fill: white; -fx-font-size: 12px; -fx-padding: 8 16; -fx-background-radius: 4;" HBox.hgrow="ALWAYS"/>
+                    </HBox>
+                </VBox>
+                
+                <!-- System Status -->
+                <VBox spacing="5">
+                    <Label text="Status" style="-fx-font-weight: bold; -fx-font-size: 12px;"/>
+                    <Label fx:id="statusLabel" text="System Ready" style="-fx-font-size: 11px; -fx-text-fill: #6c757d;"/>
+                </VBox>
+            </VBox>
+            
+        </VBox>
+        
+    </HBox>
+    
+</VBox>
