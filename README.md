@@ -125,6 +125,11 @@ The console mode demonstrates all implemented design patterns with detailed outp
   - `flyweight/`: Flyweight pattern implementation
   - `userInterface/`: UI components
 
+
+## Group Members:
+Kartikey Vijayakumar Hebbar, Gautam Bidari, Bo Li, Fangyi Gao, Yash Deshpande​
+
+
 ## License
 
 This project is licensed under the GNU General Public License - see the LICENSE file for details.
