@@ -1,5 +1,3 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/vN5dLYMT)
-# DesignPatterns
 # Smart Home Automation System
 
 A comprehensive Java-based smart home automation system that demonstrates the implementation of multiple design patterns. This project provides a flexible, extensible architecture for home automation with support for different device types, automation rules, scenes, and both console and graphical user interfaces.
@@ -33,8 +31,8 @@ This project demonstrates the implementation of numerous design patterns:
 ### Clone the Repository
 
 ```bash
-git clone https://github.com/CSYE7374-Design-Patterns-SummerFull2025/final-project-milestone-1-group-1
-cd final-project-milestone-1-group-1
+git clone https://github.com/Frida7771/SmartHome
+cd SmartHome
 ```
 
 ### Build the Project
@@ -134,7 +132,4 @@ Kartikey Vijayakumar Hebbar, Gautam Bidari, Bo Li, Fangyi Gao, Yash Deshpande​
 
 This project is licensed under the GNU General Public License - see the LICENSE file for details.
 
-## Acknowledgments
 
-- This project was developed as part of the Design Patterns course at Northeastern University
-- Special thanks to all contributors and the professor and TAs for guidance
